@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca Online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        #sidebar {
+            width: 200px;
+            background-color: #333;
+            padding: 20px;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .menu-button {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+            padding: 10px;
+            width: 100%;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-button i {
+            margin-right: 10px;
+        }
+
+        .menu-button:hover {
+            background-color: #2980b9;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .feature i {
+            font-size: 30px;
+            margin-right: 20px;
+        }
+
+        .info {
+            flex-grow: 1;
+        }
+
+        .info h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .info p {
+            margin: 5px 0;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div id="sidebar">
+    <h2>Menu</h2>
+
+    <button class="menu-button" onclick="window.location.href='/livro/cadastrar'">
+        <i class="fas fa-book"></i> Cadastrar Livro
+    </button>
+
+    <button class="menu-button" onclick="window.location.href='/livro/listar'">
+        <i class="fas fa-list"></i> Listar Livro
+    </button>
+
+    <button class="menu-button" onclick="window.location.href='/aluno/cadastrar'">
+        <i class="fas fa-user-plus"></i> Cadastrar Aluno
+    </button>
+
+    <button class="menu-button" onclick="window.location.href='/aluno/listar'">
+        <i class="fas fa-users"></i> Listar Aluno
+    </button>
+
+    <button class="menu-button" onclick="window.location.href='/emprestimo/cadastrar'">
+        <i class="fas fa-handshake"></i> Emprestar Livro
+    </button>
+
+    <button class="menu-button" onclick="window.location.href='/emprestimo/listar'">
+        <i class="fas fa-list-alt"></i> Listar Emprestimos
+    </button>
+
+    <button class="menu-button" onclick="window.location.href='/emprestimo/devolver'">
+        <i class="fas fa-undo-alt"></i> Devolver Livro
+    </button>
+
+    <button class="menu-button" onclick="window.location.href='/buscar'">
+        <i class="fas fa-search"></i> Buscar
+    </button>
+
+    <button class="menu-button" onclick="window.location.href='/sair'">
+        <i class="fas fa-sign-out-alt"></i> Sair
+    </button>
+</div>
+
+<div id="content">
+    <h2>Bem-vindo à Biblioteca Online</h2>
+
+    <div class="feature">
+        <i class="fas fa-book"></i>
+        <div class="info">
+            <h3>Cadastrar Livro</h3>
+            <p>Adicione novos livros ao catálogo.</p>
+        </div>
+    </div>
+
+    <div class="feature">
+        <i class="fas fa-list"></i>
+        <div class="info">
+            <h3>Listar Livros</h3>
+            <p>Veja a lista completa de livros disponíveis.</p>
+        </div>
+    </div>
+
+    <div class="feature">
+        <i class="fas fa-user-plus"></i>
+        <div class="info">
+            <h3>Cadastrar Aluno</h3>
+            <p>Registre novos alunos na biblioteca.</p>
+        </div>
+    </div>
+
+    <div class="feature">
+        <i class="fas fa-users"></i>
+        <div class="info">
+            <h3>Listar Alunos</h3>
+            <p>Consulte a lista de todos os alunos cadastrados.</p>
+        </div>
+    </div>
+
+    <div class="feature">
+        <i class="fas fa-handshake"></i>
+        <div class="info">
+            <h3>Emprestar Livro</h3>
+            <p>Realize empréstimos de livros para os alunos.</p>
+        </div>
+    </div>
+
+    <div class="feature">
+        <i class="fas fa-list-alt"></i>
+        <div class="info">
+            <h3>Listar Empréstimos</h3>
+            <p>Visualize os empréstimos atuais.</p>
+        </div>
+    </div>
+
+    <div class="feature">
+        <i class="fas fa-undo-alt"></i>
+        <div class="info">
+            <h3>Devolver Livro</h3>
+            <p>Registre a devolução de livros emprestados.</p>
+        </div>
+    </div>
+
+    <div class="feature">
+        <i class="fas fa-search"></i>
+        <div class="info">
+            <h3>Buscar</h3>
+            <p>Encontre informações específicas sobre livros ou alunos.</p>
+        </div>
+    </div>
+
+    <div class="feature">
+        <i class="fas fa-sign-out-alt"></i>
+        <div class="info">
+            <h3>Sair</h3>
+            <p>Encerre a sessão e saia da biblioteca online.</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

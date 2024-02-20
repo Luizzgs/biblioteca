@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Emprestimos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        #sidebar {
+            width: 200px;
+            background-color: #333;
+            padding: 20px;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+            color: #fff;
+        }
+
+        td {
+            background-color: #fff;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #c0392b;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+        }
+
+        a:hover {
+            background-color: #2980b9;
+        }
+
+        .menu-button {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+            padding: 10px;
+            width: 100%;
+            background-color: #3498db;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-button i {
+            margin-right: 10px;
+        }
+
+        .menu-button:hover {
+            background-color: #2980b9;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div id="sidebar">
+    <h2>Menu</h2>
+
+    <button class="menu-button" onclick="window.location.href='/livro/cadastrar'">
+        <i class="fas fa-book"></i> Cadastrar Livro
+    </button>
+
+    <button class="menu-button" onclick="window.location.href='/livro/listar'">
+        <i class="fas fa-list"></i> Listar Livro
+    </button>
+
+    <button class="menu-button" onclick="window.location.href='/aluno/cadastrar'">
+        <i class="fas fa-user-plus"></i> Cadastrar Aluno
+    </button>
+
+    <button class="menu-button" onclick="window.location.href='/aluno/listar'">
+        <i class="fas fa-users"></i> Listar Aluno
+    </button>
+
+    <button class="menu-button" onclick="window.location.href='/emprestimo/cadastrar'">
+        <i class="fas fa-handshake"></i> Emprestar Livro
+    </button>
+
+    <button class="menu-button" onclick="window.location.href='/emprestimo/listar'">
+        <i class="fas fa-list-alt"></i> Listar Emprestimos
+    </button>
+
+    <button class="menu-button" onclick="window.location.href='/emprestimo/devolver'">
+        <i class="fas fa-undo-alt"></i> Devolver Livro
+    </button>
+
+    <button class="menu-button" onclick="window.location.href='/buscar'">
+        <i class="fas fa-search"></i> Buscar
+    </button>
+
+    <button class="menu-button" onclick="window.location.href='/sair'">
+        <i class="fas fa-sign-out-alt"></i> Sair
+    </button>
+</div>
+
+<div id="content">
+    <h2>Lista de Emprestimos</h2>
+
+    <table border="1">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>Data</th>
+            <th>Aluno</th>
+            <th>Livro</th>
+            <th>Data Prevista</th>
+            <th>Ação</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="emprestimo : ${emprestimos}" th:if="${emprestimo.getItem().getDataDevolucao == null}">
+            <td th:text="${emprestimo.id}"></td>
+            <td th:text="${emprestimo.dataEmprestimo}"></td>
+            <td th:text="${emprestimo.getAluno().nome}"></td>
+            <td th:text="${emprestimo.getLivro().titulo}"></td>
+            <td th:text="${emprestimo.dataPrevista}"></td>
+            <td>
+                <form th:action="@{/emprestimo/devolver}" method="post">
+                    <input type="hidden" name="emprestimoId" th:value="${emprestimo.id}" />
+                    <button type="submit">Devolver Livro</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/}">Voltar ao Início</a>
+    <a th:href="@{/emprestimo/cadastrar}">Cadastrar Novo Emprestimo</a>
+</div>
+
+</body>
+</html>
